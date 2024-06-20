@@ -4,8 +4,8 @@
 % h is constant on the conic section (or-alp,or+alp) with 0<alp<=pi/2
 % and null outside.
 function [ang,c,h] = PC_h_constant_or(H,alp,or)
-if or > 1.175
-    fprintf('Error: Choose a smaller rotation angle ''or''.'); return;
+if abs(or) > 1.175
+    fprintf('Error: Choose a smaller rotation angle parameter ''or''.'); return;
 end
 h=H; c=1;
 ang=[or-alp,or+alp];
