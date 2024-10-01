@@ -40,8 +40,8 @@ Vapmax=reshape(Vap(2,2,:),1,L);
 Vapmin=reshape(Vap(1,1,:),1,L);
 Lreg = [ones(length(scale),1), zeros(length(scale),1), (scale-1)'; zeros(length(scale),1), ones(length(scale),1), (scale-1)'];
 Vapreg = [log(Vapmin(scale))';log(Vapmax(scale))'];
-reg_stru = Lreg\ Vapreg;
-H_est_stru = (1/2)*(reg_stru(3)/log(2)-2);
+reg_riesz = Lreg\ Vapreg;
+H_est_riesz = (1/2)*(reg_riesz(3)/log(2)-2);
 
 
 
@@ -116,10 +116,10 @@ figure
 hold on
 plot(1:L,log(Vapmin),'or')
 plot(scale,log(Vapmin(scale)),'o','MarkerFaceColor','r','MarkerEdgeColor','r')
-plot(1:L,(0:L-1)*reg_stru(3)+reg_stru(1),'r:')
+plot(1:L,(0:L-1)*reg_riesz(3)+reg_riesz(1),'r:')
 plot(1:L,log(Vapmax),'xb')
 plot(scale,log(Vapmax(scale)),'o','MarkerFaceColor','b','MarkerEdgeColor','b')
-plot(1:L,(0:L-1)*reg_stru(3)+reg_stru(2),'b:')
+plot(1:L,(0:L-1)*reg_riesz(3)+reg_riesz(2),'b:')
 plot(1:L,(-2:L-3)*log(2)*(2*H+2)+log(Vapmin(3)),'k:')
 plot(1:L,(-2:L-3)*log(2)*(2*H+2)+log(Vapmax(3)),'k:')
 xlabel('scale j')
